@@ -8,3 +8,8 @@
     background-image: url("cricket-pitch-top-view-direct-layout-set-up-grass-40240266.jpg");
   }
 
+ #instructions {
+    background-color: aquamarine;
+    border: 10ch;
+    border-top: black;
+  }

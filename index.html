@@ -15,6 +15,22 @@
   
 
 <body>
+  <div id = "instructions" ><p>The pink ball is the user object and it can come up or down from the arrow keys.<br>
+ The cricket bat is the harm(-100 points) object, and the stumps are the booster(+100 points) objects.<br>
+    This game has 4 levels, at each new level the speed of bats will increase.<br>
+  If user has -300 points then user loses 1 life, after 3 lives game over.  </p> </div>
+
+   <script>
+       let yes = 1;
+       document.getElementById("instructions").addEventListener("click", display);
+       function display() {
+         if(yes==1) {
+        document.getElementById("instructions").style.visibility = "hidden";
+        y=0;
+         }
+        }
+     </script>
+  
   <img id="cricket" width="50" height="50" src="dukes_avenger_pink.jpg" alt="pink">
   <img id="c" width="50" height="50" src="10360613-1694813234814880.jpg" alt = "bat vector">
   <img id ="boost" width="50" height="50" src="wooden-cricket-stump-500x500.jpg" alt = "boost">
@@ -22,6 +38,10 @@
 <canvas id="myCanvas" width="650" height="550" 
 style="border:1px solid #000000;"> </canvas>
   <script>
+     document.getElementById("myCanvas").addEventListener("click", display);
+  function display() {
+    document.getElementById("instructions").style.visibility = "visible";
+  }
 let score = 0;
 let live =3;
 let level = 0;
