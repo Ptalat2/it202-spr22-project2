@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  
+
+<body>
+  <img id="cricket" width="50" height="50" src="dukes_avenger_pink.jpg" alt="pink">
+
+<canvas id="myCanvas" width="500" height="500" 
+style="border:1px solid #000000;"> </canvas>
+  <script>
+
+const player = {type:"player", "x":0, "y":0, "dx":-1, "dy":1, "radius":10};
+
+const handler = (e) => {  
+
+if (e.key == "ArrowUp") {
+  player["y"]-=5;
+  //player["x"]-=5;
+} else if (e.key == "ArrowDown") {
+
+  player["y"]+=5;
+  //player["x"]+=5;
+} 
+}
+window.addEventListener("keydown", handler);
+const harm = [{ type:"harm", "x": 50, "y": 50, "dx": -1, "dy": 0, "color": 150, "radius": 10}, 
+{ type: "harm", "x": 100, "y": 100, "dx":-1, "dy": 0, "color":"black",radius: "10","src": ""},
+{ type: "harm", "x": 200, "y": 200, "dx":-1, "dy": 0, "color":"red",radius: "10"},
+{ type: "harm", "x": 300, "y": 300, "dx":-1, "dy": 0, "color":"blue",radius: "10"},
+{ type: "harm", "x": 400, "y": 400, "dx":-1, "dy": 0, "color":"green",radius: "10"},
+{ type: "harm", "x": 277, "y": 277, "dx":-1, "dy": 0, "color":"purple",radius: "10"}];
+
+
+
+function draw () {
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+var img = document.getElementById("cricket");
+
+
+// clear drawing
+ctx.clearRect(0,0, canvas.width, canvas.height);
+
+ctx.beginPath();
+    ctx.arc(25, 25, 25, 0, Math.PI * 2, true);
+    ctx.closePath();
+    //ctx.clip();
+
+    ctx.drawImage(img, player["x"], player["y"], 50, 50);
+
+//  update values/variables  
+for(var i =0; i<harm.length;i++)  { 
+
+ harm[i]["x"] +=harm[i]["dx"];
+
+
+//  handle conditions
+
+if(harm[i]["x"] < 0) {
+  harm[i]["x"] = canvas.width;
+}
+
+
+
+
+
+// render
+ctx.beginPath();
+ctx.arc(harm[i]["x"], harm[i]["y"], harm[i]["radius"], 0, 2 * Math.PI);
+ctx.closePath();
+ctx.fillStyle = harm[i]["color"];
+ctx.fill();
+
+
+}
+
+
+
+
+   
+
+ window.requestAnimationFrame(draw);
+
+
+}
+draw();
+
+</script>
+
+
+</body>
+  
+</html>

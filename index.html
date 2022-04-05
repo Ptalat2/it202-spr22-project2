@@ -1,16 +1,181 @@
+
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-</head>
+  <head>
+    <link rel="manifest" href="/manifest.webmanifest">
+    <script>
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  };
+</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  
 
 <body>
-  Hello world
-  <script src="script.js"></script>
-</body>
+  <img id="cricket" width="50" height="50" src="dukes_avenger_pink.jpg" alt="pink">
+  <img id="c" width="50" height="50" src="10360613-1694813234814880.jpg" alt = "bat vector">
+  <img id ="boost" width="50" height="50" src="wooden-cricket-stump-500x500.jpg" alt = "boost">
 
+<canvas id="myCanvas" width="650" height="550" 
+style="border:1px solid #000000;"> </canvas>
+  <script>
+let score = 0;
+let live =3;
+
+const player = {type:"player", "x":100, "y":100, "dx":-1, "dy":1, "radius":10};
+
+
+const handler = (e) => {  
+
+if (e.key == "ArrowUp") {
+  player["y"]-=5;
+  //player["x"]-=5;
+} else if (e.key == "ArrowDown") {
+
+  player["y"]+=5;
+  //player["x"]+=5;
+} 
+}
+window.addEventListener("keydown", handler);
+const harm = [{ type:"harm", "x": 50, "y": 50, "dx": -1, "dy": 0, "color": 150, "radius": 10}, 
+{ type: "harm", "x": 150, "y": 100, "dx":-1, "dy": 0, "color":"black",radius: "10"},
+{ type: "harm", "x": 200, "y": 200, "dx":-1, "dy": 0, "color":"red",radius: "10"},
+{ type: "harm", "x": 300, "y": 300, "dx":-1, "dy": 0, "color":"blue",radius: "10"},
+{ type: "harm", "x": 400, "y": 400, "dx":-1, "dy": 0, "color":"green",radius: "10"},
+{ type: "harm", "x": 490, "y": 277, "dx":-1, "dy": 0, "color":"purple",radius: "10"},
+{ type: "harm", "x": 300, "y": 450, "dx":-1, "dy": 0, "color":"purple",radius: "10"},
+{ type: "harm", "x": 450, "y": 500, "dx":-1, "dy": 0, "color":"purple",radius: "10"}];
+
+const booster = [{type:"boost", "x": 50, "y": 50, "dx": -1, "dy": 0, "color": 150, "radius": 20},
+{type:"boost", "x": 350, "y": 250, "dx": -1, "dy": 0, "color": 150, "radius": 20}];
+
+
+
+
+let doAnim = true;
+function draw (doAnim) {
+  
+
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+var img = document.getElementById("cricket");
+var img1 = document.getElementById("c");
+var img2 = document.getElementById("boost");
+ctx.font = "30px Arial";
+
+
+if(live == 0) {
+  // display game over
+  // end animation
+  doAnim=false;
+
+}
+
+if(!doAnim){context=null; return;}  else {
+// clear drawing
+ctx.clearRect(0,0, canvas.width, canvas.height);
+
+ctx.beginPath();
+    // ctx.arc(25, 25, 25, 0, Math.PI * 2, true);
+    ctx.closePath();
+    ctx.drawImage(img, player["x"], player["y"], 30, 30);
+
+for(var i =0; i<harm.length;i++)  { 
+
+ harm[i]["x"] +=harm[i]["dx"];
+
+if(i ==0 || i==1) {
+  booster[0]["x"] +=booster[0]["dx"];
+ booster[1]["x"] +=booster[1]["dx"];
+}
+
+//  handle conditions
+
+if(harm[i]["x"] < 90) {
+  harm[i]["x"] = canvas.width;
+}
+
+if(booster[0]["x"] < 90) {
+  booster[0]["x"] = canvas.width;
+}
+
+if(booster[1]["x"] < 90) {
+  booster[1]["x"] = canvas.width;
+}
+
+if(player["y"] <0) {
+  player["y"] = canvas.height;
+}
+
+if(player["y"] >= canvas.height) {
+  player["y"] = 0;
+}
+
+if(player["x"] < (harm[i]["x"] + 40) && (player["x"] +40) > harm[i]["x"] && player["y"] < (harm[i]["y"] + 40) && (player["y"] +40) > harm[i]["y"]) {
+  score-=100;
+  player["y"] =canvas.height;
+  console.log(score);
+}
+
+if(player["x"] < (booster[0]["x"] + 40) && (player["x"] +40) > booster[0]["x"] && player["y"] < (booster[0]["y"] + 40) && (player["y"] +40) > booster[0]["y"]) {
+  score+=100;
+  booster[0]["x"] = canvas.width;
+  console.log(score);
+}
+
+if(player["x"] < (booster[1]["x"] + 40) && (player["x"] +40) > booster[1]["x"] && player["y"] < (booster[1]["y"] + 40) && (player["y"] +40) > booster[1]["y"]) {
+  score+=100;
+  
+  booster[1]["x"] = canvas.width;
+  console.log(score);
+}
+
+
+if(score == "-300") {
+console.log("game over");
+score =0;
+--live;
+ console.log(live);
+}
+
+
+
+
+// render
+ctx.beginPath();
+ctx.closePath();
+ctx.drawImage(img1,harm[i]["x"],harm[i]["y"], 30, 30);
+ctx.fillStyle = harm[i]["color"];
+ctx.fill(); 
+
+
+  ctx.beginPath();
+ctx.closePath();
+ctx.drawImage(img2,booster[0]["x"],booster[0]["y"], 30, 30);
+
+ctx.beginPath();
+ctx.closePath();
+ctx.drawImage(img2,booster[1]["x"],booster[1]["y"], 30, 30);
+}
+
+
+
+
+   
+
+ window.requestAnimationFrame(draw);
+
+}
+}
+draw(doAnim);
+
+</script>
+
+
+</body>
+  
 </html>

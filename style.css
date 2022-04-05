@@ -1,3 +1,19 @@
-.wow {
-  width: 100px;
+#cricket {
+    display:none;
+      
+  }
+  img {
+    border-radius: 50%;
+  }
+
+  #c {
+      display: none;
+  }
+
+  canvas {
+    background-image: url("cricket-pitch-top-view-direct-layout-set-up-grass-40240266.jpg");
+  }
+
+#boost {
+    display: none;
 }
