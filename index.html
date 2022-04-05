@@ -69,7 +69,7 @@ var img = document.getElementById("cricket");
 var img1 = document.getElementById("c");
 var img2 = document.getElementById("boost");
 
-var count =0;
+
 
 
 
@@ -121,7 +121,6 @@ if(score <300) {
   level =2;
 } else {
   level =3;
- 
 }
 
   if(level ==1) {
@@ -193,7 +192,7 @@ if(player["y"] >= canvas.height) {
 
 if(player["x"] < (harm[i]["x"] + 40) && (player["x"] +40) > harm[i]["x"] && player["y"] < (harm[i]["y"] + 40) && (player["y"] +40) > harm[i]["y"]) {
   score-=100;
-  player["y"] =canvas.height;
+  player["y"] = Math.floor(Math.random() * canvas.width+1);
   console.log(score);
 }
 
@@ -219,7 +218,7 @@ if(level >1) {
 
 if(player["x"] < (moreBooster[1]["x"] + 40) && (player["x"] +40) > moreBooster[1]["x"] && player["y"] < (moreBooster[1]["y"] + 40) && (player["y"] +40) > moreBooster[1]["y"]) {
   score+=100;
-  
+ 
   booster[1]["x"] = canvas.width;
   console.log(score);
 }
