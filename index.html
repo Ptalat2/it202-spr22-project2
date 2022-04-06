@@ -239,7 +239,7 @@ if(player["x"] < (booster[1]["x"] + 40) && (player["x"] +40) > booster[1]["x"] &
   console.log(score);
 }
 if(mediC ==0) {
-if(score == -200) {
+if(score == -200 &&level !=3) {
   if(player["x"] < (MED["x"] + 40) && (player["x"] +40) > MED["x"] && player["y"] < (MED["y"] + 40) && (player["y"] +40) > MED["y"]) {
    
   live=5;
@@ -304,7 +304,7 @@ ctx.closePath();
 ctx.drawImage(img2,moreBooster[1]["x"],moreBooster[1]["y"], 30, 30);
 } 
 
-if(score == -200 && mediC ==0) {
+if(score == -200 && mediC ==0 && level !=3) {
   
       MED["x"] = 100;
       MED["y"] = 100;
