@@ -145,11 +145,6 @@ if(level ==3) {
   }
 }
 
-// if(score == -200) {
-
-// MED["x"] +=-1;
-// }
-
  harm[i]["x"] +=harm[i]["dx"];
 
  if(level>1) {
@@ -165,8 +160,6 @@ if(i ==0 || i==1) {
  if(level ==3) {
  moreBooster[0]["x"] +=moreBooster[0]["dx"] +5;
  moreBooster[1]["x"] +=moreBooster[1]["dx"]+5;
- 
-
  }
 }
 
@@ -178,7 +171,6 @@ if(harm[i]["x"] < 90) {
 }
 
 
-
 if(booster[0]["x"] < 90) {
   booster[0]["x"] = canvas.width;
 }
@@ -186,7 +178,6 @@ if(booster[0]["x"] < 90) {
 if(booster[1]["x"] < 90) {
   booster[1]["x"] = canvas.width;
 }
-
 
 
 if(booster[0]["y"] <=0 ) {
@@ -198,7 +189,6 @@ if(booster[1]["y"] <=0 ) {
 }
 
 
-
 if(level >1) {
   if(moreBooster[0]["x"] < 90) {
     moreBooster[0]["x"] = canvas.width;
@@ -207,7 +197,6 @@ if(level >1) {
 if(moreBooster[1]["x"] < 90) {
   moreBooster[1]["x"] = canvas.width;
 }
-
 }
 
 if(player["y"] <0) {
@@ -259,7 +248,6 @@ if(level >1) {
 
 if(player["x"] < (moreBooster[1]["x"]) && (player["x"] ) > moreBooster[1]["x"] && player["y"] < (moreBooster[1]["y"] ) && (player["y"] ) > moreBooster[1]["y"]) {
   score+=200;
- 
   booster[1]["x"] = canvas.width;
   console.log(score);
 }
@@ -273,11 +261,7 @@ score =0;
 }
 
 
-
-
 // render
-
-
 
 ctx.beginPath();
 ctx.closePath();
